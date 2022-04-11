@@ -1,4 +1,5 @@
 # fleet-graph-fitness
+
 Fleet component: GraphQL subgraph for fitness-related things
 
 So far this has one query, `workouts`, which returns a fixed list of workouts. I'm
@@ -19,5 +20,15 @@ pip install -r requirements.txt
 Run on port 4011 because that's what the federation gateway points to for now.
 
 ```
-strawberry server schema -p 4011
+uvicorn app.main:app --reload --port 4011
 ```
+
+## Docker
+
+Build the image
+
+```
+docker build -t fleet-graph-fitness:latest .
+```
+
+Reference: [FastAPI in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/#build-a-docker-image-for-fastapi)
