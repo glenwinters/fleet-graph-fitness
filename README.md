@@ -32,3 +32,15 @@ docker build -t fleet-graph-fitness:latest .
 ```
 
 Reference: [FastAPI in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/#build-a-docker-image-for-fastapi)
+
+### Run the data loading script
+
+Using the postgresql library required extra stuff on mac that was easiest solved by install postgres:
+```
+brew install postgresql
+```
+
+Run the script to clear out the `workouts` table and repopulate it from the `activities.csv` file:
+```
+python ./insert_activities.py
+```

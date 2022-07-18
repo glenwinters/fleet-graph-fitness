@@ -1,18 +1,19 @@
+import datetime
+import time
 import typing
 import strawberry
 
+import app.db
+
 
 def get_workouts():
-    return [
-        Workout(
-            activity="run",
-            timestamp=1649609012,
-        ),
-        Workout(
-            activity="basketball",
-            timestamp=1649695412,
-        ),
-    ]
+    db_cursor = app.db.connection.cursor()
+    db_cursor.execute("SELECT title, extract(epoch from start_timestamp) from workouts;")
+    results = db_cursor.fetchall()
+    print(results)
+    workouts = map(lambda r: Workout(activity=r[0], timestamp=r[1]), results)
+    print(workouts)
+    return workouts
 
 
 @strawberry.type
